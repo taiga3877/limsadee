@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronDown, ChevronRight } from "lucide-react";
 import png from './image.png';
 import png1 from './image copy.png';
@@ -27,15 +28,40 @@ function Two() {
       <div className="max-w-7xl mx-auto p-6 flex flex-col md:flex-row items-center justify-between">
         {/* Images */}
         <div className="flex flex-col md:flex-row items-center md:items-start justify-around w-full md:w-[800px]">
-          <img src={png} alt="Image 1" className="w-[250px] md:w-[314px] h-auto p-2 md:p-4" />
-          <img src={png1} alt="Image 2" className="w-[250px] md:w-[314px] h-auto p-2 md:p-4" />
+          <motion.img 
+            src={png} 
+            alt="Image 1" 
+            className="w-[250px] md:w-[314px] h-auto p-2 md:p-4"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          />
+          <motion.img 
+            src={png1} 
+            alt="Image 2" 
+            className="w-[250px] md:w-[314px] h-auto p-2 md:p-4"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          />
         </div>
 
         {/* FAQ Section */}
-        <div className="mt-6 md:mt-0 w-full md:w-[700px] space-y-2">
+        <motion.div 
+          className="mt-6 md:mt-0 w-full md:w-[700px] space-y-2"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h1 className="text-2xl font-bold">Frequently Asked Questions</h1>
           {faqs.map((faq, index) => (
-            <div key={index} className="border border-gray-400 rounded-lg overflow-hidden">
+            <motion.div 
+              key={index} 
+              className="border border-gray-400 rounded-lg overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
               <button
                 className="flex justify-between items-center w-full p-4 text-left text-white font-semibold"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -44,11 +70,18 @@ function Two() {
                 {openIndex === index ? <ChevronDown /> : <ChevronRight />}
               </button>
               {openIndex === index && (
-                <div className="p-4 w-full text-white">{faq.answer}</div>
+                <motion.div 
+                  className="p-4 w-full text-white"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {faq.answer}
+                </motion.div>
               )}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Marquee Section */}

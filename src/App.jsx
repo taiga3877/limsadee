@@ -8,6 +8,9 @@ import Four from './Section/Four/Four';
 import Five from './Section/Five/Five';
 import Section from './Components/Navbar/Section/Section';
 import Home from './Components/Navbar/Home';
+import Routerdom from './Routerdom/Routerdom';
+import Sectioon from './Components/Navbar/Section/Section';
+import Price from './Section/Price/Price';
 
 const App = () => {
     return (
@@ -15,12 +18,13 @@ const App = () => {
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/two" element={<Two />} />
+                <Route path="/ourservice" element={<Routerdom />} />
                 <Route path="/three" element={<Three />} />
                 <Route path="/four" element={<Four />} />
                 <Route path="/five" element={<Five />} />
-                <Route path="/contacts" element={<Section />} />
+                <Route path="/contacts" element={<Five/>} />
             </Routes>
+           <Sectioon/>
         </Router>
     );
 };

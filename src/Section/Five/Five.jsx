@@ -1,8 +1,15 @@
 import React from 'react';
+import Section from '../../Components/Navbar/Section/Section';
+import Prices from '../Price/Price';
 
 function Five() {
     return (
+        
         <div className="bg-[#667DB6] py-10 px-4">
+            <br />
+            <Prices/>
+            <br />
+            <br />
             <div className="max-w-[1440px] w-full mx-auto flex flex-wrap items-center justify-between">
                 
                 {/* Левая часть */}
@@ -25,7 +32,7 @@ function Five() {
                             className="w-full p-3 rounded bg-gray-700 text-white outline-none focus:ring-2 focus:ring-[#1C4DCB]" 
                         />
                         <input 
-                            type="tel" 
+                            type="number" 
                             placeholder="+998 901234567" 
                             className="w-full p-3 rounded bg-gray-700 text-white outline-none focus:ring-2 focus:ring-[#1C4DCB]" 
                         />

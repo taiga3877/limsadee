@@ -1,89 +1,90 @@
-import React from 'react';
-import back1 from './image.png';
-import back2 from './image copy.png';
-import back3 from './image copy 2.png';
-import back4 from './image copy 3.png';
-import back5 from './image copy 4.png';
-import back6 from './image copy 5.png';
-import back7 from './image copy 6.png';
-import back8 from './image copy 7.png';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronDown, ChevronRight } from "lucide-react";
+import png from './image.png';
+import png1 from './image copy.png';
+import Marquee from 'react-fast-marquee';
 
-const projects = [
+const faqs = [
   {
-    url: "https://www.ataevbahodirbuild.uz/",
-    img: back1,
-    title: "Ataev Bahadir Build",
-    description: "Quality construction and repair services! Choose us, create the house of your dreams."
+    question: "Why are the prices so cheap?",
+    answer: "Our prices are really cheap compared to the quality. The reason is that we don't have excess labor in our web studio, so we don't have excess costs. That's why we keep our prices low compared to others.",
   },
   {
-    url: "https://www.autozoomrental.com/",
-    img: back2,
-    title: "AutoZoomRental",
-    description: "Convenient and reliable car rental! Make your trip more pleasant with our cars."
+    question: "Will I be able to edit the site myself in the future?",
+    answer: "Yes, of course, you will be given access and instructions to the content management system (adminka). Adminka has a convenient interface, is intuitive and does not require specific knowledge.",
   },
   {
-    url: "https://www.it-time-academy.uz/",
-    img: back3,
-    title: "IT Time Academy",
-    description: "The destination of modern IT knowledge! Take the professions of the future with us."
+    question: "Will you continue to support the site after it’s finished?",
+    answer: "Once we've finished your site, we'll keep it running for free, 24/7 for one year. After one year, it's $10/month.",
   },
-  {
-    url: "https://www.homekit.uz/",
-    img: back4,
-    title: "HomeKit",
-    description: "Modern and convenient smart home solutions! Ensure the safety and comfort of your home with us."
-  },
-  {
-    url: "https://www.uzloyal.uz/",
-    img: back5,
-    title: "UzLoyal",
-    description: "A reliable and convenient loyalty system! The most effective way to motivate your customers."
-  },
-  {
-    url: "https://www.namanganoits.uz/",
-    img: back6,
-    title: "Namangan ITS",
-    description: "A center of modern IT knowledge and skills! Get new opportunities at every step."
-  },
-  {
-    url: "https://propartnyor.uz/",
-    img: back7,
-    title: "ProPartnyor",
-    description: "The address of reliable and effective cooperation! We will work together for the success of your business."
-  },
-  {
-    url: "https://zamontour.uz/",
-    img: back8,
-    title: "ZamonTour",
-    description: "Experience a happy tourist experience with us! Your trip with us is guaranteed to be more pleasant."
-  }
 ];
 
-const ProjectsGrid = () => {
+function Two() {
+  const [openIndex, setOpenIndex] = useState(0);
+
   return (
-    <div className="bg-[#1C4DCB] text-white py-10 px-6 sm:px-10">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-10">Our Recent Projects</h2>
-        
-        {/* Responsive Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {projects.map((project, index) => (
-            <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-105 hover:bg-gray-700">
-              <a href={project.url} target="_blank" rel="noopener noreferrer">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <img src={project.img} alt={project.title} className="w-full h-auto max-h-40 object-cover rounded-md mb-4" />
-                <p className="text-gray-300">{project.description}</p>
-              </a>
-            </div>
-          ))}
+    <div className="bg-[#1C4DCB] text-white">
+      <div className="max-w-7xl mx-auto p-6 flex flex-col md:flex-row items-center justify-between">
+        {/* Images */}
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-around w-full md:w-[800px]">
+          <motion.img 
+            src={png} 
+            alt="Image 1" 
+            className="w-[250px] md:w-[314px] h-auto p-2 md:p-4 rounded-lg shadow-lg"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          />
+          <motion.img 
+            src={png1} 
+            alt="Image 2" 
+            className="w-[250px] md:w-[314px] h-auto p-2 md:p-4 rounded-lg shadow-lg"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          />
         </div>
+
+        {/* FAQ Section */}
+        <motion.div 
+          className="mt-6 md:mt-0 w-full md:w-[700px] space-y-2"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-2xl font-bold">Frequently Asked Questions</h1>
+          {faqs.map((faq, index) => (
+            <motion.div 
+              key={index} 
+              className="border border-gray-400 rounded-lg overflow-hidden shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
+              <button
+                className="flex justify-between items-center w-full p-4 text-left text-white font-semibold bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              >
+                {faq.question}
+                {openIndex === index ? <ChevronDown /> : <ChevronRight />}
+              </button>
+              {openIndex === index && (
+                <motion.div 
+                  className="p-4 w-full text-white"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {faq.answer}
+                </motion.div>
+              )}
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </div>
   );
-};
-
-function Three() {
-  return <ProjectsGrid />;
 }
 
-export default Three;
+export default Two;
