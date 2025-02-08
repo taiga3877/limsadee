@@ -14,6 +14,7 @@ function Home() {
         <Three/>
         <Four/>
         <Five/>
+        <Section/>
     </div>
   )
 }

@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "Will you continue to support the site after it’s finished?",
-    answer: "Once we've finished your site, we'll keep it running for free, 24/7 for one year. After one year, it's $10/month.",
+    answer: "Once we've finished your site, we'll k eep it running for free, 24/7 for one year. After one year, it's $10/month.",
   },
 ];
 
@@ -46,42 +46,7 @@ function Two() {
           />
         </div>
 
-        {/* FAQ Section */}
-        <motion.div 
-          className="mt-6 md:mt-0 w-full md:w-[700px] space-y-2"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-2xl font-bold">Frequently Asked Questions</h1>
-          {faqs.map((faq, index) => (
-            <motion.div 
-              key={index} 
-              className="border border-gray-400 rounded-lg overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              <button
-                className="flex justify-between items-center w-full p-4 text-left text-white font-semibold bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              >
-                {faq.question}
-                {openIndex === index ? <ChevronDown /> : <ChevronRight />}
-              </button>
-              {openIndex === index && (
-                <motion.div 
-                  className="p-4 w-full text-white"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {faq.answer}
-                </motion.div>
-              )}
-            </motion.div>
-          ))}
-        </motion.div>
+    
       </div>
     </div>
   );
